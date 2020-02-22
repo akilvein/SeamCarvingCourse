@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage1/Seam_Carving-stage1.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage1/Seam_Carving-stage1.iml" group="Seam carving/Seam_Carving-stage1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage1/Seam_Carving-stage1_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage1/Seam_Carving-stage1_main.iml" group="Seam carving/Seam_Carving-stage1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage1/Seam_Carving-stage1_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage1/Seam_Carving-stage1_test.iml" group="Seam carving/Seam_Carving-stage1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage2/Seam_Carving-stage2.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage2/Seam_Carving-stage2.iml" group="Seam carving/Seam_Carving-stage2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage2/Seam_Carving-stage2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage2/Seam_Carving-stage2_main.iml" group="Seam carving/Seam_Carving-stage2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage2/Seam_Carving-stage2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage2/Seam_Carving-stage2_test.iml" group="Seam carving/Seam_Carving-stage2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage3/Seam_Carving-stage3.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage3/Seam_Carving-stage3.iml" group="Seam carving/Seam_Carving-stage3" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage3/Seam_Carving-stage3_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage3/Seam_Carving-stage3_main.iml" group="Seam carving/Seam_Carving-stage3" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage3/Seam_Carving-stage3_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage3/Seam_Carving-stage3_test.iml" group="Seam carving/Seam_Carving-stage3" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage4/Seam_Carving-stage4.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage4/Seam_Carving-stage4.iml" group="Seam carving/Seam_Carving-stage4" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage4/Seam_Carving-stage4_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage4/Seam_Carving-stage4_main.iml" group="Seam carving/Seam_Carving-stage4" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage4/Seam_Carving-stage4_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage4/Seam_Carving-stage4_test.iml" group="Seam carving/Seam_Carving-stage4" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage5/Seam_Carving-stage5.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage5/Seam_Carving-stage5.iml" group="Seam carving/Seam_Carving-stage5" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage5/Seam_Carving-stage5_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage5/Seam_Carving-stage5_main.iml" group="Seam carving/Seam_Carving-stage5" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage5/Seam_Carving-stage5_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage5/Seam_Carving-stage5_test.iml" group="Seam carving/Seam_Carving-stage5" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage6/Seam_Carving-stage6_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage6/Seam_Carving-stage6_main.iml" group="Seam carving/Seam_Carving-stage6" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam Carving/stage6/Seam_Carving-stage6_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam Carving/stage6/Seam_Carving-stage6_test.iml" group="Seam carving/Seam_Carving-stage6" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Seam_carving.iml" filepath="$PROJECT_DIR$/.idea/modules/Seam_carving.iml" group="Seam_carving" />
+    </modules>
+  </component>
+</project>

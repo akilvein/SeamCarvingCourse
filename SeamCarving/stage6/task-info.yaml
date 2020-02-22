@@ -1,0 +1,12 @@
+type: edu
+files:
+- name: src/seamcarving/Main.kt
+  visible: true
+- name: small.png
+  visible: true
+- name: trees.png
+  visible: true
+- name: test/SeamCarvingTest.java
+  visible: false
+- name: blue.png
+  visible: true
