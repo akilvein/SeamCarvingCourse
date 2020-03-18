@@ -2,6 +2,7 @@ package seamcarving
 
 import java.awt.Color
 import java.awt.image.BufferedImage
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.security.MessageDigest
 import javax.imageio.ImageIO
@@ -32,6 +33,15 @@ open class Image {
 
     constructor(image: BufferedImage) {
         this.image = image
+    }
+
+    fun md5(): String {
+        val baos = ByteArrayOutputStream()
+        ImageIO.write(image, "bmp", baos)
+
+        return MessageDigest.getInstance("MD5")
+                .digest(baos.toByteArray())
+                .joinToString("") { "%02x".format(it) }
     }
 
     open operator fun get(x: Int, y: Int): Color {
@@ -180,11 +190,6 @@ fun Image.drawHorizontalSeam() {
     }
 }
 
-fun getMD5(path: String) =
-        MessageDigest.getInstance("MD5")
-                .digest(File(path).readBytes())
-                .joinToString("") { "%02x".format(it) }
-
 fun main(args: Array<String>) {
     var inFilename = "amsterdam-small.png"
     var outFilename = "amsterdam-small_horizontal-seam.png"
@@ -201,7 +206,5 @@ fun main(args: Array<String>) {
     image.drawHorizontalSeam()
 
     image.save(outFilename)
-
-    println("($outFilename) -> (${getMD5(outFilename)})")
 }
 

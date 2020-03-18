@@ -3,7 +3,9 @@ package seamcarving
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.image.BufferedImage
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.security.MessageDigest
 import java.util.*
 import javax.imageio.ImageIO
 
@@ -54,8 +56,16 @@ class Image {
 
     val graphics: Graphics
         get() = image.graphics
-}
 
+    fun md5(): String {
+        val baos = ByteArrayOutputStream()
+        ImageIO.write(image, "bmp", baos)
+
+        return MessageDigest.getInstance("MD5")
+                .digest(baos.toByteArray())
+                .joinToString("") { "%02x".format(it) }
+    }
+}
 
 fun main(args: Array<String>) {
     val scanner = Scanner(System.`in`)

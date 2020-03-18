@@ -6,11 +6,12 @@ import seamcarving.MainKt;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -35,11 +36,21 @@ class OutFile {
 
     public boolean compareWithActualMD5() throws CheckFailException {
         try {
+            File imgPath = new File(filename);
+            BufferedImage bufferedImage = ImageIO.read(imgPath);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "bmp", baos);
+
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(new FileInputStream(filename).readAllBytes());
+            md.update(baos.toByteArray());
             byte[] digest = md.digest();
-            if (!Hex.encodeHexString(digest).equalsIgnoreCase(hash)) {
-                throw new CheckFailException("Hash sum of your image does not match expected value");
+            String actualHash = Hex.encodeHexString(digest);
+            if (!actualHash.equalsIgnoreCase(hash)) {
+                throw new CheckFailException(
+                        String.format(
+                                "Hash sum of your image (%s) does not match expected value",
+                                actualHash));
             }
         } catch (IOException e) {
             throw new CheckFailException(
@@ -99,18 +110,18 @@ public class SeamCarvingTest extends BaseStageTest<OutFile> {
     @Override
     public List<TestCase<OutFile>> generate() {
 
-        return List.of(
+        return Arrays.asList(
                 new TestCase<OutFile>()
                         .addArguments("-in", "small.png", "-out", "small-negative.png")
-                        .setAttach(new OutFile("small-negative.png",15, 10, "f962e35e1d07761892ce84c790e69dce")),
+                        .setAttach(new OutFile("small-negative.png",15, 10, "b25b6f88aaa616e81c04cf3bc2713946")),
 
                 new TestCase<OutFile>()
                         .addArguments("-in", "blue.png", "-out", "blue-negative.png")
-                        .setAttach(new OutFile("blue-negative.png", 500, 334, "1822db3d495f0f46d31e01b3df973a78")),
+                        .setAttach(new OutFile("blue-negative.png", 500, 334, "f2f4c0ea34926b1a711a6d04bd108923")),
 
                 new TestCase<OutFile>()
                         .addArguments("-in", "trees.png", "-out", "trees-negative.png")
-                        .setAttach(new OutFile("trees-negative.png", 600, 429, "e9dd95534db7285dacbaaf3b31dc828c"))
+                        .setAttach(new OutFile("trees-negative.png", 600, 429, "e6eaf77401b4d6d9c27368bdb11a0862"))
         );
     }
 

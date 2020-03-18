@@ -150,11 +150,6 @@ fun Image.drawSeam() {
     }
 }
 
-fun getMD5(path: String) =
-        MessageDigest.getInstance("MD5")
-                .digest(File(path).readBytes())
-                .joinToString("") { "%02x".format(it) }
-
 fun main(args: Array<String>) {
     var inFilename = "amsterdam-small.png"
     var outFilename = "amsterdam-small_seam.png"
@@ -171,7 +166,5 @@ fun main(args: Array<String>) {
     image.drawSeam()
 
     image.save(outFilename)
-
-    println("($outFilename) -> (${getMD5(outFilename)})")
 }
 

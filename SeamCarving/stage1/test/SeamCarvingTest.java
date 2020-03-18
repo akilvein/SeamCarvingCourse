@@ -6,11 +6,12 @@ import seamcarving.MainKt;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 class CheckFailException extends Exception {
@@ -34,11 +35,21 @@ class OutFile {
 
     public boolean compareWithActualMD5() throws CheckFailException {
         try {
+            File imgPath = new File(filename);
+            BufferedImage bufferedImage = ImageIO.read(imgPath);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "bmp", baos);
+
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(new FileInputStream(filename).readAllBytes());
+            md.update(baos.toByteArray());
             byte[] digest = md.digest();
-            if (!Hex.encodeHexString(digest).equalsIgnoreCase(hash)) {
-                throw new CheckFailException("Hash sum of your image does not match expected value");
+            String actualHash = Hex.encodeHexString(digest);
+            if (!actualHash.equalsIgnoreCase(hash)) {
+                throw new CheckFailException(
+                        String.format(
+                                "Hash sum of your image (%s) does not match expected value",
+                                actualHash));
             }
         } catch (IOException e) {
             throw new CheckFailException(
@@ -98,18 +109,18 @@ public class SeamCarvingTest extends BaseStageTest<OutFile> {
     @Override
     public List<TestCase<OutFile>> generate() {
 
-        return List.of(
+        return Arrays.asList(
                 new TestCase<OutFile>()
                         .setInput("20\n10\nout1.png\n")
-                        .setAttach(new OutFile("out1.png", 20, 10, "50c985b7445d6ef0a318b1827bc852f9")),
+                        .setAttach(new OutFile("out1.png", 20, 10, "b56a8b4fce6cfcc00965be5c9b1eb157")),
 
                 new TestCase<OutFile>()
                         .setInput("10\n10\nout2.png\n")
-                        .setAttach(new OutFile("out2.png",10, 10, "940725b08eaa293c6f614310575290d6")),
+                        .setAttach(new OutFile("out2.png",10, 10, "031a1b56b1a2754c69a6119c61b1f28f")),
 
                 new TestCase<OutFile>()
                         .setInput("20\n20\nout3.png\n")
-                        .setAttach(new OutFile("out3.png", 20, 20, "55e4b0ee838ff97e43570124bbd05d5d"))
+                        .setAttach(new OutFile("out3.png", 20, 20, "a4b4885a3aa7a3acdc318885b865178b"))
         );
     }
 

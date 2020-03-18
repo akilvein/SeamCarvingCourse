@@ -6,11 +6,13 @@ import seamcarving.MainKt;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 class CheckFailException extends Exception {
@@ -34,11 +36,21 @@ class OutFile {
 
     public boolean compareWithActualMD5() throws CheckFailException {
         try {
+            File imgPath = new File(filename);
+            BufferedImage bufferedImage = ImageIO.read(imgPath);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "bmp", baos);
+
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(new FileInputStream(filename).readAllBytes());
+            md.update(baos.toByteArray());
             byte[] digest = md.digest();
-            if (!Hex.encodeHexString(digest).equalsIgnoreCase(hash)) {
-                throw new CheckFailException("Hash sum of your image does not match expected value");
+            String actualHash = Hex.encodeHexString(digest);
+            if (!actualHash.equalsIgnoreCase(hash)) {
+                throw new CheckFailException(
+                        String.format(
+                                "Hash sum of your image (%s) does not match expected value",
+                                actualHash));
             }
         } catch (IOException e) {
             throw new CheckFailException(
@@ -98,18 +110,18 @@ public class SeamCarvingTest extends BaseStageTest<OutFile> {
     @Override
     public List<TestCase<OutFile>> generate() {
 
-        return List.of(
+        return Arrays.asList(
                 new TestCase<OutFile>()
                         .addArguments("-in", "small.png", "-out", "small-seam-hor.png")
-                        .setAttach(new OutFile("small-seam-hor.png", 15, 10, "b4f1dd20ad157a74bfb21be9961954e4")),
+                        .setAttach(new OutFile("small-seam-hor.png", 15, 10, "91d48b32789908d7826a32e1304a4ddc")),
 
                 new TestCase<OutFile>()
                         .addArguments("-in", "blue.png", "-out", "blue-seam-hor.png")
-                        .setAttach(new OutFile("blue-seam-hor.png", 500, 334, "c1383f5d285bd7c090294f4982607e1d")),
+                        .setAttach(new OutFile("blue-seam-hor.png", 500, 334, "b9070275c8a22db340162d2419fa13fe")),
 
                 new TestCase<OutFile>()
                         .addArguments("-in", "trees.png", "-out", "trees-seam-hor.png")
-                        .setAttach(new OutFile("trees-seam-hor.png", 600, 429, "6367ef0c071daf4f33d79e9391bbbbc0"))
+                        .setAttach(new OutFile("trees-seam-hor.png", 600, 429, "69ed6abd2487d46df650cbe46d577dc7"))
         );
     }
 

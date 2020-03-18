@@ -100,12 +100,6 @@ class Image {
     }
 }
 
-fun getMD5(path: String) =
-        MessageDigest.getInstance("MD5")
-                .digest(File(path).readBytes())
-                .joinToString("") { "%02x".format(it) }
-
-
 fun main(args: Array<String>) {
     var inFilename = "amsterdam-small.png"
     var outFilename = "amsterdam-small_energy.png"
@@ -119,7 +113,5 @@ fun main(args: Array<String>) {
 
     val image = Image(inFilename).energyImage()
     image.save(outFilename)
-
-    println("($outFilename) -> (${getMD5(outFilename)})")
 }
 

@@ -232,11 +232,6 @@ fun measure(block: () -> Unit): String {
     return "$min min. $sec sec. $mil ms."
 }
 
-fun getMD5(path: String) =
-        MessageDigest.getInstance("MD5")
-                .digest(File(path).readBytes())
-                .joinToString("") { "%02x".format(it) }
-
 fun main(args: Array<String>) {
     var inFilename = "amsterdam.png"
     var outFilename = "amsterdam_reduced.png"
@@ -262,7 +257,5 @@ fun main(args: Array<String>) {
     })
 
     reduced!!.save(outFilename)
-
-    println("($outFilename) -> (${getMD5(outFilename)})")
 }
 
