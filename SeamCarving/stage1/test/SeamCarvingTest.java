@@ -36,10 +36,18 @@ class OutFile {
     public boolean compareWithActualMD5() throws CheckFailException {
         try {
             File imgPath = new File(filename);
-            BufferedImage bufferedImage = ImageIO.read(imgPath);
+            BufferedImage sourceImage = ImageIO.read(imgPath);
+
+            BufferedImage rgbImage =
+                    new BufferedImage(sourceImage.getWidth(), sourceImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+            for (int i = 0; i < sourceImage.getWidth(); i++) {
+                for (int j = 0; j < sourceImage.getHeight(); j++) {
+                    rgbImage.setRGB(i, j, sourceImage.getRGB(i, j));
+                }
+            }
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(bufferedImage, "bmp", baos);
+            ImageIO.write(rgbImage, "bmp", baos);
 
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(baos.toByteArray());
