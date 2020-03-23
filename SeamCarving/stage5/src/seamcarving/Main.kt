@@ -70,7 +70,7 @@ open class Image {
         ImageIO.write(image, extension, file);
     }
 
-    private fun pixelEnergy(x: Int, y: Int): Double {
+    fun pixelEnergy(x: Int, y: Int): Double {
         fun dx2(x: Int, y: Int): Int =
                 when (x) {
                     0 -> dx2(x + 1, y)
@@ -182,12 +182,21 @@ fun Image.drawVerticalSeam() {
     }
 }
 
-fun Image.drawHorizontalSeam() {
+fun Image.drawHorizontalSeam(): Double {
     val seam = getHorizontalSeam()
+
+    var sum = 0.0
+    for (x in seam.indices) {
+        val y = seam[x]
+        sum += pixelEnergy(x, y)
+    }
+
     for (x in seam.indices) {
         val y = seam[x]
         set(x, y, Color.RED)
     }
+
+    return sum
 }
 
 fun main(args: Array<String>) {
@@ -203,7 +212,7 @@ fun main(args: Array<String>) {
 
     val image = Image(inFilename)
 
-    image.drawHorizontalSeam()
+    println(image.drawHorizontalSeam())
 
     image.save(outFilename)
 }
